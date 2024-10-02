@@ -1,23 +1,31 @@
-# app/controllers/chatbot_controller.py
+# controllers/chatbot_controller.py
+
 from models.movie_model import MovieModel
 
-
 class ChatbotController:
-    @staticmethod
-    def recommend_movie(user_input):
-        # Extrait les préférences de l'utilisateur (par exemple, un genre ou une humeur)
-        genre, mood = ChatbotController.parse_user_input(user_input)
-        # Appelle le modèle pour obtenir des recommandations
-        recommendations = MovieModel.get_movie_recommendation(genre, mood)
-        return recommendations
+    def __init__(self):
+        self.movie_model = MovieModel()
 
-    @staticmethod
-    def parse_user_input(user_input):
-        # Analyse simple des préférences de l'utilisateur
-        # Exemple : "Je veux un film d'action pour une soirée détendue"
-        if "action" in user_input.lower():
-            return "action", "detente"
-        elif "comédie" in user_input.lower():
-            return "comedy", "fun"
-        # Ajoutez plus de genres et d'humeurs ici
-        return "drama", "neutral"
+    def get_movie_recommendations(self, genre):
+        """Récupère et affiche les recommandations de films pour un genre donné."""
+        recommendations = self.movie_model.get_movie_recommendation(genre)
+        if recommendations:
+            return recommendations
+        else:
+            return "Désolé, aucune recommandation n'a été trouvée."
+
+    def interact_with_mistral(self, user_input):
+        """Gère l'interaction avec Mistral AI."""
+        messages = [
+            {
+                "role": "user",
+                "content": user_input
+            }
+        ]
+        response = self.movie_model.use_mistral_for_chat(messages)
+
+        # Vérifier si la réponse est valide et non "NaN"
+        if response is None or response.strip().lower() == "nan":
+            return "Désolé, je n'ai pas compris la réponse. Pouvez-vous reformuler ?"
+        
+        return response

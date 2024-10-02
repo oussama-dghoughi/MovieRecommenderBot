@@ -1,19 +1,23 @@
-# main.py
+from PyQt5 import QtWidgets  # Importer QtWidgets pour QApplication
 from controllers.chatbot_controller import ChatbotController
-from views.chatbot_view import ChatbotView
+from views.chatbot_view import MovieView
 
 def main():
-    # Affiche le message de bienvenue
-    ChatbotView.display_welcome_message()
+    # Créer une instance de QApplication
+    app = QtWidgets.QApplication([])  # Notez que nous passons une liste vide ici
 
-    # Demande les préférences utilisateur
-    user_input = ChatbotView.ask_user_preferences()
+    # Initialisation du contrôleur et de la vue
+    controller = ChatbotController()
+    view = MovieView(controller)  # Passez le contrôleur à la vue
 
-    # Obtient les recommandations du contrôleur
-    recommendations = ChatbotController.recommend_movie(user_input)
+    # Affichage du message de bienvenue
+    view.display_welcome_message()
 
-    # Affiche les recommandations
-    ChatbotView.display_recommendations(recommendations)
+    # Afficher la fenêtre
+    view.show()
+
+    # Exécuter l'application
+    app.exec_()  # Commencer la boucle d'événements
 
 if __name__ == "__main__":
     main()
