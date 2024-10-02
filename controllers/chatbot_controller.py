@@ -23,9 +23,4 @@ class ChatbotController:
             }
         ]
         response = self.movie_model.use_mistral_for_chat(messages)
-
-        # Vérifier si la réponse est valide et non "NaN"
-        if response is None or response.strip().lower() == "nan":
-            return "Désolé, je n'ai pas compris la réponse. Pouvez-vous reformuler ?"
-        
         return response
