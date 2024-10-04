@@ -665,7 +665,7 @@ color: rgb(31, 69, 152);
    <widget class="QPlainTextEdit" name="plainTextEdit">
     <property name="geometry">
      <rect>
-      <x>15</x>
+      <x>10</x>
       <y>60</y>
       <width>531</width>
       <height>381</height>
@@ -1143,14 +1143,14 @@ color: rgb(31, 69, 152);
    <widget class="QTextBrowser" name="textBrowser">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>60</y>
-      <width>381</width>
-      <height>381</height>
+      <x>15</x>
+      <y>71</y>
+      <width>291</width>
+      <height>361</height>
      </rect>
     </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>

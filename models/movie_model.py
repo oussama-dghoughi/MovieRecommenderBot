@@ -31,14 +31,17 @@ class MovieModel:
                 return []
         else:
             return []
-
+        
+    
     @staticmethod
     def use_mistral_for_chat(messages):
         """Utilise Mistral AI pour gérer les conversations."""
         from mistralai import Mistral  # Import local pour l'utiliser uniquement si nécessaire
 
         # Initialisation du client Mistral avec la clé API
+        # client = Mistral(api_key=MovieModel.MISTRAL_API_KEY)
         client = Mistral(api_key=MovieModel.MISTRAL_API_KEY)
+        
 
         # Appel à l'API Mistral pour obtenir une réponse
         chat_response = client.chat.complete(
@@ -47,5 +50,9 @@ class MovieModel:
             response_format={"type": "json_object"}
         )
 
-        # Retourne la réponse du chatbot
-        return chat_response.choices[0].message.content
+        # Vérification de la réponse
+        if chat_response.choices and len(chat_response.choices) > 0:
+            # Retourne la réponse du chatbot
+            return chat_response.choices[0].message.content
+        else:
+            return "Erreur : Aucune réponse du modèle Mistral."

@@ -23,4 +23,7 @@ class ChatbotController:
             }
         ]
         response = self.movie_model.use_mistral_for_chat(messages)
+
         return response
+
+                
