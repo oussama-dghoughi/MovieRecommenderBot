@@ -35,8 +35,6 @@ class MovieView(QMainWindow):
             else:
                 self.plainTextEdit.appendPlainText("Aucune recommandation disponible pour ce genre.")
 
-                
-
 
     def display_chatbot_response(self, user_input, response):
         """Affiche la réponse du chatbot après une interaction utilisateur."""
