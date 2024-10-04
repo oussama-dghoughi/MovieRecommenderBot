@@ -5,7 +5,7 @@ import requests
 from dotenv import load_dotenv
 from mistralai import Mistral  
 
-# Chargement des variables d'environnement
+
 
 
 class MovieModel:
